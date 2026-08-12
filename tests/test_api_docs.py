@@ -37,7 +37,7 @@ def test_all_public_functions_are_documented() -> None:
 
 def test_api_examples_compile(tmp_path: Path) -> None:
     """Tutorial programs must compile with the same strict host flags used by CI."""
-    assert TUTORIAL.is_file(), "missing docs/API璋冪敤鏁欑▼.md"
+    assert TUTORIAL.is_file(), "missing F280 API tutorial"
     for filename in EXAMPLES:
         source = ROOT / "examples" / "api_usage" / filename
         assert source.is_file(), f"missing example: {source.relative_to(ROOT)}"
@@ -55,7 +55,7 @@ def test_api_examples_compile(tmp_path: Path) -> None:
 
 def test_api_manual_links_and_placeholders() -> None:
     """Navigation must reach the tutorial and not publish unfinished markers."""
-    assert TUTORIAL.is_file(), "missing docs/API璋冪敤鏁欑▼.md"
+    assert TUTORIAL.is_file(), "missing F280 API tutorial"
     for markdown in (REFERENCE, TUTORIAL, ROOT / "README.md", ROOT / "docs" / "README.md"):
         text = markdown.read_text(encoding="utf-8")
         assert not re.search(r"(?mi)^\s*(?:TODO|TBD|FIXME)\b", text)
