@@ -28,8 +28,10 @@ jobs:
           ./build/test_extended
           ./build/test_streaming
           ./build/offline_measurement
-      - name: Run Python golden tests
+      - name: Run Python golden tests and API documentation contract
         run: python -m pytest -q
+      - name: Compile API tutorial examples
+        run: python -m pytest tests/test_api_docs.py -q
       - name: Basic Markdown and project checks
         run: |
           test -f LICENSE
