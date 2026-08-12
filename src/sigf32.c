@@ -2,6 +2,7 @@
 
 #include <float.h>
 #include <math.h>
+#include <stdlib.h>
 #include <string.h>
 
 static float sigf32_clampf(float x, float lo, float hi)
