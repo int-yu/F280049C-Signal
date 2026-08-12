@@ -1,0 +1,4 @@
+// F280049C 100-pin PZ bare-device configuration.
+// Add clocks, GPIOs, and peripherals with the CCS SysConfig graphical editor.
+//@cliArgs --device "F28004x" --package "F28004x_100PZ" --part "F28004x_100PZ"
+//@v2CliArgs --device "TMS320F280049C" --package "100PZ"

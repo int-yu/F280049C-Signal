@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+  <project
+        name="F280049C_Signal"
+        device="TMS320F280049C"
+        cgtVersion="25.11.1.LTS"
+        products="sysconfig"
+        outputFormat="ELF"
+        launchWizard="False"
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/.metadata/sdk.json --device TMS320F280049C --package 100PZ"
+        description="Bare-device TMS320F280049C 100PZ DriverLib project with graphical SysConfig">
+
+    <configuration
+        name="CPU1_RAM"
+        compilerBuildOptions="--opt_level=off --c99 --fp_mode=relaxed -I${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware -I${PROJECT_ROOT}/include -I${PROJECT_ROOT}/backends/c2000 -I${PROJECT_ROOT}/device -I${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/libraries/dsp/FPU/c28/include -I${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/driverlib/f28004x/driverlib -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --gen_func_subsections=on --define=DEBUG --define=SIGF32_ENABLE_C2000WARE_RFFT --diag_warning=225 --diag_suppress=10063 --display_error_number"
+        linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -i${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs" />
+
+    <configuration
+        name="CPU1_FLASH"
+        compilerBuildOptions="--opt_level=off --c99 --fp_mode=relaxed -I${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware -I${PROJECT_ROOT}/include -I${PROJECT_ROOT}/backends/c2000 -I${PROJECT_ROOT}/device -I${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/libraries/dsp/FPU/c28/include -I${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/driverlib/f28004x/driverlib -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --gen_func_subsections=on --define=DEBUG --define=SIGF32_ENABLE_C2000WARE_RFFT --define=_FLASH --diag_warning=225 --diag_suppress=10063 --display_error_number"
+        linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH -i${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs" />
+    <file action="copy" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/device_support/f28004x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/device_support/f28004x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/device_support/f28004x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/device_support/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/device_support/f28004x/common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/device_support/f28004x/common/cmd/28004x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/device_support/f28004x/common/cmd/28004x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="link" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/driverlib/f28004x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="link" path="${COM_TI_DIGITAL_POWER_C2000WARE_SDK_SOFTWARE_PACKAGE_INSTALL_DIR}/c2000ware/libraries/dsp/FPU/c28/lib/c28x_fpu_dsp_library_eabi.lib" targetDirectory="" />
+    <file action="copy" path="include/sigf32.h" targetDirectory="include" />
+    <file action="copy" path="src/sigf32.c" targetDirectory="src" />
+    <file action="copy" path="backends/c2000/sigf32_tmu.h" targetDirectory="backends/c2000" />
+    <file action="copy" path="backends/c2000/sigf32_tmu.c" targetDirectory="backends/c2000" />
+    <file action="copy" path="backends/c2000/sigf32_cla_adapter.h" targetDirectory="backends/c2000" />
+    <file action="copy" path="backends/c2000/sigf32_cla_adapter.c" targetDirectory="backends/c2000" />
+    <file action="copy" path="backends/c2000/sigf32_rfft_adapter.h" targetDirectory="backends/c2000" />
+    <file action="copy" path="backends/c2000/sigf32_rfft_adapter.c" targetDirectory="backends/c2000" />
+    <file action="copy" path="main.c" targetDirectory="" />
+    <file action="copy" path="main.syscfg" targetDirectory="" openOnCreation="true" />
+    <file action="copy" path="README.md" targetDirectory="" />
+  </project>
+</projectSpec>
+

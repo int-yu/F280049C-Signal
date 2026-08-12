@@ -1,0 +1,39 @@
+name: host-tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Python test dependencies
+        run: python -m pip install --upgrade pip numpy scipy pytest
+      - name: Build C regression tests
+        run: |
+          mkdir -p build
+          gcc -std=c11 -Wall -Wextra -Werror -Iinclude tests/test_signal.c src/sigf32.c -lm -o build/test_signal
+          gcc -std=c11 -Wall -Wextra -Werror -Iinclude tests/test_extended.c src/sigf32.c -lm -o build/test_extended
+          gcc -std=c11 -Wall -Wextra -Werror -Iinclude tests/test_streaming.c src/sigf32.c -lm -o build/test_streaming
+          gcc -std=c11 -Wall -Wextra -Werror -Iinclude examples/offline_measurement.c src/sigf32.c -lm -o build/offline_measurement
+      - name: Run C regression tests
+        run: |
+          ./build/test_signal
+          ./build/test_extended
+          ./build/test_streaming
+          ./build/offline_measurement
+      - name: Run Python golden tests
+        run: python -m pytest -q
+      - name: Basic Markdown and project checks
+        run: |
+          test -f LICENSE
+          test -f main.syscfg
+          grep -q 'products="sysconfig"' F280049C_Signal.projectspec
+          ! grep -q 'C2000WARE_ROOT' F280049C_Signal.projectspec
+          for f in README.md docs/*.md; do test -s "$f"; done

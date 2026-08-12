@@ -1,0 +1,23 @@
+# Build products
+Debug/
+Release/
+CPU1_RAM/
+CPU1_FLASH/
+syscfg/
+*.out
+*.map
+*.lst
+*.obj
+*.d
+*.pp
+*.xml
+*.exe
+*.pyc
+__pycache__/
+.pytest_cache/
+.venv/
+.vscode/
+.metadata/
+*.o
+
+tests/syscfg_verify/
